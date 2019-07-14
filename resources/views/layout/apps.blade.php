@@ -5,12 +5,11 @@
           enable_page_level_ads: true
      });
 </script>
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-133746152-2"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-133746152-3"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-133746152-2');
+  gtag('config', 'UA-133746152-3');
 </script>
