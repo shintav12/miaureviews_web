@@ -13,7 +13,7 @@
 @endsection
 
 @section("body")
-<section class="bg-1-white ptb-0">
+<section class="bg-1-white ptb-0 pt-3" style="padding-top: 70px !important">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-1"></div>

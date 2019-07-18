@@ -1,5 +1,5 @@
-<header>
-    <a class="logo" href="{{url('/')}}"><img src="{{asset('assets/images/logo.png')}}" alt="Logo"></a>
+<header style="background: black;">
+    <a class="logo" href="{{url('/')}}"><img src="{{asset('assets/images/icono-logo-web.png')}}" alt="Logo"></a>
     <a class="menu-nav-icon" data-menu="#main-menu" href="#"><i class="ion-navicon"></i></a>
     <div class="right-area" >
         <div style="margin-top:5%">
@@ -10,10 +10,11 @@
         </div>
     </div>
     <ul class="main-menu" id="main-menu">
-        <li><a href="{{url('/freebies')}}">ESTO ES PARA T&Iacute;</a></li>
-        <li><a href="{{url('/videos')}}">CONT&Aacute;GIATE DE MI LOCURA</a></li>
-        <li><a href="{{url('/posts')}}">QUE HAY EN M&Iacute; CABEZA</a></li>
-        <li><a href="{{url('/store')}}">LA WAO TIENDA</a></li>
+        <li><a class="menu" href="{{url('/freebies')}}"><img src="{{asset('assets/images/comida-y-utensilios-blanco.png')}}" /></a></li>
+        <li><a href="{{url('/videos')}}"><img src="{{asset('assets/images/camas-y-muebles-blanco.png')}}" /></a></li>
+        <li><a href="{{url('/posts')}}"><img src="{{asset('assets/images/juegos-y-divertimiento-blanco.png')}}" /></a></li>
+        <li><a href="{{url('/store')}}"><img src="{{asset('assets/images/higuiene-y-salud-blanco.png')}}" /></a></li>
+        <li><a href="{{url('/store')}}"><img src="{{asset('assets/images/para-humanos-amarillo.png')}}" /></a></li>
     </ul>
     <div class="clearfix"></div>
 </header>

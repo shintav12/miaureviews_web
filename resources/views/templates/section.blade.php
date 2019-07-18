@@ -13,25 +13,14 @@
     <link href="{{asset("assets/common/styles.css")}}" rel="stylesheet" type="text/css" />
     <style>
         .bg-custom{
-            background: url("{{asset('assets/images/bg3.jpg')}}") no-repeat center;
+            background: black;
             background-size: cover;
         }
 
-        .bg-layer-2:after {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: -1;
-            opacity: 1;
-            background: #ffd601;
+        .h-490x{
+            height: 100%!important;
         }
-        .mx-w-600x{
-            max-width: 80% !important;
-            margin-left: 10%;
-        }
+
         .btn-brdr-grey {
             text-align: center;
             height: 45px;
@@ -45,23 +34,31 @@
             background: #673ab7;
             color: white;
         }
+
+        .menu:hover img{
+            background: url({{asset('assets/images/comida-y-utensilios-amarillo.png')}});
+        }
+
+
+        .bg-layer-2:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: -1;
+            opacity: 1;
+        }
+        .mx-w-600x{
+            max-width: 600px!important;
+        }
     </style>
     @yield("styles")
 </head>
 <body>
     @include("layout.header")
-    <div class="slider-main h-500x h-sm-auto pos-relative pt-95 pb-25">
-		<div class="img-bg bg-custom bg-layer-2"></div>
-		<div class="container-fluid h-100 mt-xs-0">
-			<div class="dplay-tbl">
-				<div class="dplay-tbl-cell color-white text-center">
-                <div class="mx-w-600x">
-					<img src="{{asset('assets/images/'.$config['image'])}}">
-                    </div>
-				</div>
-			</div>
-		</div>
-	</div>
+
     @yield("body")	
     @include("layout.footer")
     <script src="{{asset("assets/plugin-frameworks/jquery-3.2.1.min.js")}}" type="text/javascript"></script>
