@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Http\Request;
 use App\Image;
 use App\Post;
@@ -21,6 +22,7 @@ class WebController extends Controller
 //            ORDER BY p.id DESC
 //            LIMIT 5"));
 
+        $categories = Category::get();
         $videos = DB::select(DB::raw("SELECT v.*, GROUP_CONCAT(i.image ORDER BY i.image_type ASC SEPARATOR ',') as images 
             FROM videos v
             LEFT JOIN images i ON v.id = i.object_id and i.object_type = 'video'
@@ -40,12 +42,16 @@ class WebController extends Controller
         $template = [];
         $template["videos"] = $videos;
         $template["products"] = $products;
+        $template["categories"] = $categories;
 
         return view("pages.index", $template);
     }
 
+
+
     public function sections($slug){
         $config = [];
+        $categories = Category::get();
         if( $slug == "posts" ) { $config["table"] = "post"; $config["type"] = "post"; $config["image"] = "portada-posts.png"; $config["title"] = "Posts"; }
         if( $slug == "videos" ) { $config["table"] = "videos"; $config["type"] = "video"; $config["image"] = "portada-videos.png"; $config["title"] = "Videos"; }
         if( $slug == "freebies" ) { $config["table"] = "frebies"; $config["type"] = "frebie"; $config["image"] = "portada-freebie.png"; $config["title"] = "Freebies"; }
@@ -59,8 +65,29 @@ class WebController extends Controller
         $template["items"] = $items;
         $template["config"] = $config;
         $template["slug"] = $slug;
+        $template["categories"] = $categories;
 
         return view("pages.section", $template);
+    }
+
+    public function category($slug){
+        $config = [];
+        $categories = Category::get();
+        $category = Category::where("slug", $slug)->first();
+        $config["table"] = "products"; $config["type"] = "product";  $config["title"] = $category->title;
+        $items = DB::select(DB::raw("SELECT p.*, GROUP_CONCAT(i.image ORDER BY i.image_type ASC SEPARATOR ',') as images 
+        FROM  ".$config['table']." p 
+        LEFT JOIN images i ON p.id = i.object_id and i.object_type = '".$config['type']."'
+        WHERE p.category_id = ". $category->id." 
+        GROUP BY p.id
+        ORDER BY p.id DESC"));
+        $template = [];
+        $template["items"] = $items;
+        $template["config"] = $config;
+        $template["slug"] = $slug;
+        $template["categories"] = $categories;
+
+        return view("pages.categories", $template);
     }
 
     public function post($slug){
@@ -97,6 +124,7 @@ class WebController extends Controller
     }
 
     public function video($slug){
+        $categories = Category::get();
         $video = DB::select(DB::raw("SELECT p.*, GROUP_CONCAT(i.image ORDER BY i.image_type ASC SEPARATOR ',') as images 
         FROM  videos p 
         LEFT JOIN images i ON p.id = i.object_id and i.object_type = 'video'
@@ -125,11 +153,13 @@ class WebController extends Controller
         $template["slug"] = "videos";
         $template["metas"] = $item_metas;
         $template["related_items"] = $related_items;
+        $template["categories"] = $categories;
 
         return view("pages.video", $template);
     }
 
     public function product($slug){
+        $categories = Category::get();
         $post = DB::select(DB::raw("SELECT p.*, GROUP_CONCAT(i.image ORDER BY i.image_type ASC SEPARATOR ',') as images 
         FROM  products p 
         LEFT JOIN images i ON p.id = i.object_id and i.object_type = 'product'
@@ -154,13 +184,14 @@ class WebController extends Controller
         $images = explode(",", $post->images);
         $template["tags"] = $tags;
         $template["item"] = $post;
+        $template["categories"] = $categories;
         $num_images = count($images);
         $pos = 0;
 
         unset($images[$pos]);
         
         $template["images"] = $images;
-        $template["slug"] = "product";
+        $template["slug"] = Category::where("id", $post->category_id)->first()->slug;
         $template["metas"] = $post_metas;
         $template["related_items"] = $related_items;
 

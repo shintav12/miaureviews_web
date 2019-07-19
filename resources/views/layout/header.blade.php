@@ -10,11 +10,21 @@
         </div>
     </div>
     <ul class="main-menu" id="main-menu">
-        <li><a class="menu" href="{{url('/freebies')}}"><img src="{{asset('assets/images/comida-y-utensilios-blanco.png')}}" /></a></li>
-        <li><a href="{{url('/videos')}}"><img src="{{asset('assets/images/camas-y-muebles-blanco.png')}}" /></a></li>
-        <li><a href="{{url('/posts')}}"><img src="{{asset('assets/images/juegos-y-divertimiento-blanco.png')}}" /></a></li>
-        <li><a href="{{url('/store')}}"><img src="{{asset('assets/images/higuiene-y-salud-blanco.png')}}" /></a></li>
-        <li><a href="{{url('/store')}}"><img src="{{asset('assets/images/para-humanos-amarillo.png')}}" /></a></li>
+        <?php foreach($categories as $category){?>
+            <li>
+                <a href="{{url('/category/'.$category->slug)}}">
+                    <?php if(isset($slug)) {
+                        if($slug == $category->slug) {?>
+                            <img src="{{asset('assets/images/'.$category->slug.'-amarillo.png')}}" />
+                        <?php } else { ?>
+                            <img src="{{asset('assets/images/'.$category->slug.'-blanco.png')}}" />
+                        <?php }
+                    } else{ ?>
+                        <img src="{{asset('assets/images/'.$category->slug.'-blanco.png')}}" />
+                    <?php } ?>
+                </a>
+            </li>
+        <?php }?>
     </ul>
     <div class="clearfix"></div>
 </header>
