@@ -25,14 +25,15 @@
             text-align: center;
             height: 45px;
             line-height: 43px;
-            border: 1px solid #00e6a6;
-            background: #00e6a6;
-            border-radius: 5px;
+            border: 1px solid black;
+            background: black;
+            border-radius: 25px;
+            color: white !important;
         }
         .btn-brdr-grey:hover {
-            border: 1px solid #673ab7;
-            background: #673ab7;
-            color: white;
+            border: 1px solid white;
+            background: white;
+            color: black !important;
         }
 
         .menu:hover img{

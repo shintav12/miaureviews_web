@@ -19,9 +19,9 @@
 		text-align: center;
 		height: 45px;
 		line-height: 43px;
-		border: 1px solid #00e6a6;
-		background: #00e6a6;
-		border-radius: 5px;
+		border: 1px solid black;
+		background: black;
+		border-radius: 15px;
 	}
 		.btn-brdr-grey2:hover {
 		border: 1px solid #673ab7;
